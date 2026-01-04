@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-login',
   imports: [],
-  templateUrl: './home.html',
+  templateUrl: './login.html',
 })
-export class Home {
+export class Login {
   loginWithGithub() {
     console.log('Login with Github');
   }
