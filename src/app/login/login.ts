@@ -1,14 +1,13 @@
 import { Component, output } from '@angular/core';
+import { LoginUi } from '@ui/login-ui/login-ui';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [LoginUi],
   templateUrl: './login.html',
 })
 export class Login {
-  onLogin = output<string>();
-
-  loginWithGithub() {
-    this.onLogin.emit('github');
+  login(ev: string) {
+    console.log('Login with', ev);
   }
 }
