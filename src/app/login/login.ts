@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './login.html',
 })
 export class Login {
+  onLogin = output<string>();
+
   loginWithGithub() {
-    console.log('Login with Github');
+    this.onLogin.emit('github');
   }
 }
