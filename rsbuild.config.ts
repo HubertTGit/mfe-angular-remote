@@ -27,12 +27,14 @@ export default createConfig({
       pluginSass(),
       pluginModuleFederation({
         name: 'angularRemote',
-        dts: false,
+        dts: {
+          generateTypes: true,
+          consumeTypes: true,
+          tsConfigPath: './tsconfig.app.json',
+        },
         filename: 'remoteEntry.js',
         exposes: {
           './MyAngularElement': './src/main.ts',
-          './LoginUi': './src/app/ui/login-ui/login-ui.ts',
-          './CommentsInputUi': './src/app/ui/comments-input/comments-input.ts',
         },
         shared: {
           '@angular/core': { singleton: true, strictVersion: true, eager: true },
