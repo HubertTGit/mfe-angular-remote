@@ -10,6 +10,19 @@ export default createConfig({
     tsConfig: './tsconfig.app.json',
   },
   rsbuildConfigOverrides: {
+    source: {
+      entry: {
+        index: './src/main.ts',
+      },
+    },
+    tools: {
+      rspack: (config, { appendPlugins }) => {
+        // Ensure Angular compilation happens before Module Federation
+        config.optimization = config.optimization || {};
+        config.optimization.runtimeChunk = false;
+        return config;
+      },
+    },
     plugins: [
       pluginSass(),
       pluginModuleFederation({
@@ -17,7 +30,6 @@ export default createConfig({
         dts: false,
         filename: 'remoteEntry.js',
         exposes: {
-          './MyAngularElement': './src/main.ts',
           './LoginUi': './src/app/ui/login-ui/login-ui.ts',
           './CommentsInputUi': './src/app/ui/comments-input/comments-input.ts',
         },
@@ -26,6 +38,9 @@ export default createConfig({
           '@angular/common': { singleton: true, strictVersion: true, eager: true },
           '@angular/router': { singleton: true, strictVersion: true, eager: true },
           '@angular/elements': { singleton: true, strictVersion: true, eager: true },
+          '@angular/platform-browser': { singleton: true, strictVersion: true, eager: true },
+          '@angular/compiler': { singleton: true, strictVersion: true, eager: true },
+          'zone.js': { singleton: true, strictVersion: true, eager: true },
         },
       }),
     ],
