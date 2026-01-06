@@ -30,6 +30,7 @@ export default createConfig({
         dts: false,
         filename: 'remoteEntry.js',
         exposes: {
+          './MyAngularElement': './src/main.ts',
           './LoginUi': './src/app/ui/login-ui/login-ui.ts',
           './CommentsInputUi': './src/app/ui/comments-input/comments-input.ts',
         },

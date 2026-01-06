@@ -5,6 +5,7 @@ import { appConfig } from './app/app.config';
 import { App } from './app/app';
 import { LoginUi } from './app/ui/login-ui/login-ui';
 import { CommentsInput } from './app/ui/comments-input/comments-input';
+import './styles.scss';
 
 bootstrapApplication(App, appConfig)
   .then((appRef) => {
