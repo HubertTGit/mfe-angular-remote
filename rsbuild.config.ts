@@ -13,18 +13,19 @@ export default createConfig({
     plugins: [
       pluginSass(),
       pluginModuleFederation({
-        name: 'remote',
+        name: 'angularRemote',
         dts: false,
         filename: 'remoteEntry.js',
         exposes: {
-          './login-ui': './src/app/ui/login-ui/login-ui.ts',
-          './comments-input': './src/app/ui/comments-input/comments-input.ts',
+          './MyAngularElement': './src/main.ts',
+          './LoginUi': './src/app/ui/login-ui/login-ui.ts',
+          './CommentsInputUi': './src/app/ui/comments-input/comments-input.ts',
         },
         shared: {
-          '@angular/core': { singleton: true, strictVersion: true },
-          '@angular/common': { singleton: true, strictVersion: true },
-          '@angular/router': { singleton: true, strictVersion: true },
-          '@angular/elements': { singleton: true, strictVersion: true },
+          '@angular/core': { singleton: true, strictVersion: true, eager: true },
+          '@angular/common': { singleton: true, strictVersion: true, eager: true },
+          '@angular/router': { singleton: true, strictVersion: true, eager: true },
+          '@angular/elements': { singleton: true, strictVersion: true, eager: true },
         },
       }),
     ],
