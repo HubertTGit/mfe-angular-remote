@@ -34,7 +34,7 @@ export default createConfig({
         },
         filename: 'remoteEntry.js',
         exposes: {
-          './MyAngularElement': './src/main.ts',
+          './LoginUi': './src/app/ui/login-ui/login-ui.entry.ts',
         },
         shared: {
           '@angular/core': { singleton: true, strictVersion: true, eager: true },

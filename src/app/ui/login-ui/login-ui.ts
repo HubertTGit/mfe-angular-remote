@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-login-ui',
@@ -7,6 +7,7 @@ import { Component, output } from '@angular/core';
 })
 export class LoginUi {
   onLogin = output<string>();
+  name = input<string>('Jack');
 
   loginWithGithub() {
     this.onLogin.emit('github');
