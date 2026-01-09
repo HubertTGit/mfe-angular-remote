@@ -7,7 +7,6 @@ import { LucideAngularModule, Moon, Sun } from 'lucide-angular';
   templateUrl: './theme-switch.html',
 })
 export class ThemeSwitch implements OnInit, OnDestroy {
-  onSwitchTheme = output<void>();
   isDark = signal(false);
 
   readonly Moon = Moon;

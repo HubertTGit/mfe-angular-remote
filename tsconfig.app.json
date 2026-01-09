@@ -10,6 +10,9 @@
     "paths": {
       "@ui/*": [
         "src/app/ui/*"
+      ],
+      "@styles/*": [
+        "src/styles.scss"
       ]
     } 
   },

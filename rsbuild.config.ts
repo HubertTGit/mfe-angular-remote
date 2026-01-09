@@ -35,6 +35,7 @@ export default createConfig({
         filename: 'remoteEntry.js',
         exposes: {
           './LoginUi': './src/app/ui/login-ui/login-ui.entry.ts',
+          './ThemeSwitch': './src/app/ui/theme-switch/theme-switch.entry.ts',
         },
         shared: {
           '@angular/core': { singleton: true, strictVersion: true, eager: true },
@@ -43,6 +44,7 @@ export default createConfig({
           '@angular/elements': { singleton: true, strictVersion: true, eager: true },
           '@angular/platform-browser': { singleton: true, strictVersion: true, eager: true },
           '@angular/compiler': { singleton: true, strictVersion: true, eager: true },
+          'lucide-angular': { singleton: true, strictVersion: true, eager: true },
           'zone.js': { singleton: true, strictVersion: true, eager: true },
         },
       }),
