@@ -1,0 +1,7 @@
+<button class="cursor-pointer" (click)="switchTheme()">
+  @if (isDark()) {
+  <lucide-icon [img]="Sun"></lucide-icon>
+  } @else {
+  <lucide-icon [img]="Moon"></lucide-icon>
+  }
+</button>

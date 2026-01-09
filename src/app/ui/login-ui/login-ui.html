@@ -13,10 +13,12 @@
   </div>
 </div>
 } @else {
-<div class="w-full max-w-md space-y-8 rounded-xl bg-white p-10 shadow-lg">
+<div class="w-full max-w-md space-y-8 rounded-xl bg-card-foreground p-10 shadow-lg">
   <div>
-    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-    <p class="mt-2 text-center text-sm text-gray-600">
+    <h2 class="mt-6 text-center text-3xl font-extrabold text-background">
+      Sign in to your account
+    </h2>
+    <p class="mt-2 text-center text-sm text-background">
       Welcome back! <br />
       Please sign in using your GitHub account.
     </p>
@@ -24,11 +26,11 @@
   <div class="mt-8 space-y-6">
     <button
       (click)="loginWithGithub()"
-      class="group relative flex w-full justify-center rounded-md border border-transparent bg-gray-900 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none"
+      class="group relative flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-foreground focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none"
     >
       <span class="absolute inset-y-0 left-0 flex items-center pl-3">
         <svg
-          class="h-5 w-5 text-gray-400 group-hover:text-gray-300"
+          class="h-5 w-5 text-white group-hover:text-gray-300"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
