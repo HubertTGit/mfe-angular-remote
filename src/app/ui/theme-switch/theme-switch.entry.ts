@@ -1,5 +1,4 @@
 import 'zone.js';
-import '@styles/styles.scss';
 
 import { createApplication } from '@angular/platform-browser';
 import { provideBrowserGlobalErrorListeners } from '@angular/core';

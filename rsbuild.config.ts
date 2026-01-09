@@ -29,7 +29,6 @@ export default createConfig({
         name: 'angularRemote',
         dts: {
           generateTypes: true,
-          consumeTypes: true,
           tsConfigPath: './tsconfig.app.json',
         },
         filename: 'remoteEntry.js',
