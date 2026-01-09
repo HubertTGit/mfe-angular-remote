@@ -7,7 +7,6 @@ import { Component, input, output } from '@angular/core';
 })
 export class LoginUi {
   onLogin = output<string>();
-  name = input<string>('Michael');
   isLoading = input<boolean>(false);
 
   loginWithGithub() {
