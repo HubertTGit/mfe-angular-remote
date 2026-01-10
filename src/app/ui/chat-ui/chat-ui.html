@@ -16,21 +16,21 @@
     @for (msg of messages(); track msg.id) {
     <div
       class="flex flex-col"
-      [class.items-end]="msg.sender === 'user'"
-      [class.items-start]="msg.sender === 'bot'"
+      [class.items-end]="msg.userid === 'user'"
+      [class.items-start]="msg.userid === 'bot'"
     >
       <div
         class="max-w-[80%] px-4 py-2 rounded-2xl text-sm shadow-sm"
-        [class.bg-blue-600]="msg.sender === 'user'"
-        [class.text-white]="msg.sender === 'user'"
-        [class.bg-white]="msg.sender === 'bot'"
-        [class.dark:bg-gray-800]="msg.sender === 'bot'"
-        [class.text-gray-800]="msg.sender === 'bot'"
-        [class.dark:text-gray-200]="msg.sender === 'bot'"
-        [class.rounded-br-none]="msg.sender === 'user'"
-        [class.rounded-bl-none]="msg.sender === 'bot'"
+        [class.bg-blue-600]="msg.userid === 'user'"
+        [class.text-white]="msg.userid === 'user'"
+        [class.bg-white]="msg.userid === 'bot'"
+        [class.dark:bg-gray-800]="msg.userid === 'bot'"
+        [class.text-gray-800]="msg.userid === 'bot'"
+        [class.dark:text-gray-200]="msg.userid === 'bot'"
+        [class.rounded-br-none]="msg.userid === 'user'"
+        [class.rounded-bl-none]="msg.userid === 'bot'"
       >
-        {{ msg.text }}
+        {{ msg.message }}
       </div>
       <span class="text-[10px] text-gray-400 mt-1 px-1">
         {{ msg.timestamp | date : 'shortTime' }}
@@ -54,16 +54,7 @@
         class="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
         [disabled]="!newMessage()"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="w-5 h-5"
-        >
-          <path
-            d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z"
-          />
-        </svg>
+        <lucide-angular [name]="sendHorizontal"></lucide-angular>
       </button>
     </div>
   </div>

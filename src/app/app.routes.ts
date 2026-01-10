@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent: () => import('./screens/chat/chat').then((m) => m.Chat),
+    loadComponent: () => import('./screens/chat/chat').then((m) => m.ChatScreen),
     canActivate: [authGuard],
   },
 ];

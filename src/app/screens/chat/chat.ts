@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ChatUi } from '@ui/chat-ui/chat-ui';
 
 @Component({
-  selector: 'app-chat',
+  selector: 'app-chat-screen',
   imports: [ChatUi],
   templateUrl: './chat.html',
 })
-export class Chat {}
+export class ChatScreen {}
