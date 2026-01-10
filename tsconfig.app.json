@@ -11,6 +11,9 @@
       "@ui/*": [
         "src/app/ui/*"
       ],
+      "@services/*": [
+        "src/app/services/*"
+      ],
       "@styles/*": [
         "src/styles.scss"
       ]

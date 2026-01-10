@@ -6,10 +6,14 @@ import { Component, input, output } from '@angular/core';
   templateUrl: './login-ui.html',
 })
 export class LoginUi {
-  onLogin = output<string>();
+  onLogin = output<'google' | 'github'>();
   isLoading = input<boolean>(false);
 
   loginWithGithub() {
     this.onLogin.emit('github');
+  }
+
+  loginWithGoogle() {
+    this.onLogin.emit('google');
   }
 }

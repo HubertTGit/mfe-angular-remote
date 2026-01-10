@@ -1,6 +1,8 @@
 @if (isLoading()) {
 <!-- Loading -->
-<div class="w-full max-w-md space-y-8 rounded-xl bg-white p-10 shadow-lg animate-pulse">
+<div
+  class="w-[300px] max-w-md space-y-8 rounded-xl bg-card-foreground p-10 shadow-lg animate-pulse"
+>
   <div class="flex flex-col items-center">
     <div class="mt-6 h-9 w-3/4 rounded bg-gray-200"></div>
     <div class="mt-4 h-4 w-5/6 rounded bg-gray-200"></div>
@@ -20,17 +22,35 @@
     </h2>
     <p class="mt-2 text-center text-sm text-background">
       Welcome back! <br />
-      Please sign in using your GitHub account.
+      Please sign in using your GitHub or Google account.
     </p>
   </div>
   <div class="mt-8 space-y-6">
     <button
-      (click)="loginWithGithub()"
-      class="group relative flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-foreground focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none cursor-pointer"
+      (click)="loginWithGoogle()"
+      class="group relative flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-foreground hover:text-foreground focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none cursor-pointer"
     >
       <span class="absolute inset-y-0 left-0 flex items-center pl-3">
         <svg
-          class="h-5 w-5 text-white group-hover:text-gray-300"
+          class="h-5 w-5 text-white group-hover:text-foreground"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.053-3.24 2.08-2.08 2.76-5.12 2.76-7.547 0-.76-.053-1.467-.173-2.293h-10.64z"
+          />
+        </svg>
+      </span>
+      Login with Google
+    </button>
+    <button
+      (click)="loginWithGithub()"
+      class="group relative flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-primary-foreground hover:text-foreground focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none cursor-pointer"
+    >
+      <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+        <svg
+          class="h-5 w-5 text-white group-hover:text-foreground"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"

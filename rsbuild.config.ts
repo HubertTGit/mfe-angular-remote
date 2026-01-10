@@ -43,6 +43,8 @@ export default createConfig({
           '@angular/elements': { singleton: true, strictVersion: true, eager: true },
           '@angular/platform-browser': { singleton: true, strictVersion: true, eager: true },
           '@angular/compiler': { singleton: true, strictVersion: true, eager: true },
+          '@angular/fire/app': { singleton: true, strictVersion: true, eager: true },
+          '@angular/fire/auth': { singleton: true, strictVersion: true, eager: true },
           'lucide-angular': { singleton: true, strictVersion: true, eager: true },
           'zone.js': { singleton: true, strictVersion: true, eager: true },
         },
