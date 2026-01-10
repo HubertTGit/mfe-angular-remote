@@ -1,4 +1,10 @@
-<header class="p-4 flex justify-end">
+<header class="p-4 flex justify-between">
+  @if (user()) {
+  <app-profile [user]="user()" />
+  } @else {
+  <div></div>
+  }
+  <h1 class="text-2xl font-bold">Weeee Chat</h1>
   <app-theme-switch />
 </header>
 <main>

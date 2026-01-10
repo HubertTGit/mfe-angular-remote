@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<div class="relative">
+  <button
+    (click)="toggleMenu()"
+    class="flex items-center justify-center w-6 h-6 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  >
+    @if (user()?.photoURL) {
+    <img [src]="user()?.photoURL" alt="User Avatar" class="w-full h-full object-cover" />
+    } @else {
+    <div class="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+      <span class="text-gray-500 dark:text-gray-400 text-sm font-medium">
+        {{ user()?.displayName?.charAt(0) || user()?.email?.charAt(0) || 'U' }}
+      </span>
+    </div>
+    }
+  </button>
+
+  @if (isMenuOpen()) {
+  <div
+    class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-50"
+  >
+    <div
+      class="px-4 py-2 text-sm text-gray-700 dark:text-gray-200 border-b border-gray-100 dark:border-gray-700"
+    >
+      <h4>Welcome back</h4>
+      <p class="font-medium truncate">{{ user()?.displayName || 'User' }}</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 truncate">{{ user()?.email }}</p>
+    </div>
+    <button
+      (click)="logout()"
+      class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+    >
+      Sign out
+    </button>
+  </div>
+  }
+</div>

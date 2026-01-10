@@ -11,19 +11,8 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
   imports: [LoginUi],
   templateUrl: './login.html',
 })
-export class Login implements OnInit, OnDestroy {
+export class Login {
   private readonly loginFacade = inject(LoginFacade);
-  private unsubscribe!: Unsubscribe;
-
-  ngOnInit(): void {
-    this.loginFacade
-      .userState$()
-      .subscribe({
-        next: this.loginCB,
-        error: this.loginErrorCB,
-        complete: () => console.log('complete'),
-      });
-  }
 
   login(ev: 'google' | 'github') {
     if (ev === 'google') {
@@ -32,24 +21,6 @@ export class Login implements OnInit, OnDestroy {
 
     if (ev === 'github') {
       this.loginFacade.loginWithGithub();
-    }
-  }
-
-  private loginCB = (user: User | null) => {
-    if (user) {
-      console.log(user);
-    } else {
-      console.log('user not found');
-    }
-  };
-
-  private loginErrorCB = (error: Error) => {
-    console.log(error);
-  };
-
-  ngOnDestroy(): void {
-    if (this.unsubscribe) {
-      this.unsubscribe();
     }
   }
 }

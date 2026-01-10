@@ -1,12 +1,35 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal, OnInit, effect } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { ThemeSwitch } from '@ui/theme-switch/theme-switch';
+import { Profile } from '@ui/profile/profile';
+import { LoginFacade } from './screens/login/login.facade';
+import { User } from '@angular/fire/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ThemeSwitch],
+  imports: [RouterOutlet, ThemeSwitch, Profile, CommonModule],
   templateUrl: './app.html',
 })
-export class App {
-  protected readonly title = signal('angular-app');
+export class App implements OnInit {
+  private loginFacade = inject(LoginFacade);
+  protected readonly user = signal<User | null>(null);
+  private router = inject(Router);
+
+  constructor() {
+    effect(() => {
+      if (this.user()) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.loginFacade.userState$().subscribe({
+      next: (user) => this.user.set(user),
+      error: (error) => console.error(error),
+    });
+  }
 }
