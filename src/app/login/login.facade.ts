@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   getAuth,
   GithubAuthProvider,
@@ -11,6 +11,9 @@ import {
   ErrorFn,
   Unsubscribe,
   user,
+  Auth,
+  signInWithPopup,
+  UserCredential,
 } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
@@ -18,35 +21,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginFacade {
-  loginWithGoogle(): Promise<void> {
+  private readonly auth = inject(Auth);
+
+  loginWithGoogle(): Promise<UserCredential> {
     const provider = new GoogleAuthProvider();
-    const auth = getAuth();
-    return signInWithRedirect(auth, provider);
+    return signInWithPopup(this.auth, provider);
   }
 
-  loginWithGithub(): Promise<void> {
+  loginWithGithub(): Promise<UserCredential> {
     const provider = new GithubAuthProvider();
-    const auth = getAuth();
-    return signInWithRedirect(auth, provider);
+    return signInWithPopup(this.auth, provider);
   }
 
   logout(): Promise<void> {
-    const auth = getAuth();
-    return signOut(auth);
+    return signOut(this.auth);
   }
 
   authStateChangeHandler(cb: NextOrObserver<User | null>, error: ErrorFn): Unsubscribe {
-    const auth = getAuth();
-    return onAuthStateChanged(auth, cb, error);
+    return onAuthStateChanged(this.auth, cb, error);
   }
 
   userState$(): Observable<User | null> {
-    const auth = getAuth();
-    return user(auth);
+    return user(this.auth);
   }
 
   getUser(): User | null {
-    const auth = getAuth();
-    return auth.currentUser;
+    return this.auth.currentUser;
   }
 }

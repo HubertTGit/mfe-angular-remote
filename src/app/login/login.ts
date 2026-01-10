@@ -1,8 +1,8 @@
-import { Component, inject, OnDestroy, OnInit, output } from '@angular/core';
+import { Component, importProvidersFrom, inject, OnDestroy, OnInit, output } from '@angular/core';
 import { LoginUi } from '@ui/login-ui/login-ui';
 import { LoginFacade } from './login.facade';
 import { Unsubscribe, User } from 'firebase/auth';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp, getApp } from '@angular/fire/app';
 import { firebaseConfig } from '@services/firebase';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
@@ -10,14 +10,19 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
   selector: 'app-login',
   imports: [LoginUi],
   templateUrl: './login.html',
-  providers: [],
 })
 export class Login implements OnInit, OnDestroy {
   private readonly loginFacade = inject(LoginFacade);
   private unsubscribe!: Unsubscribe;
 
   ngOnInit(): void {
-    this.loginFacade.userState$().subscribe(console.log);
+    this.loginFacade
+      .userState$()
+      .subscribe({
+        next: this.loginCB,
+        error: this.loginErrorCB,
+        complete: () => console.log('complete'),
+      });
   }
 
   login(ev: 'google' | 'github') {
@@ -43,6 +48,8 @@ export class Login implements OnInit, OnDestroy {
   };
 
   ngOnDestroy(): void {
-    this.unsubscribe();
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
   }
 }
