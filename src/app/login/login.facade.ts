@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { app } from '@services/firebase';
 import {
   getAuth,
   GithubAuthProvider,
@@ -11,8 +10,9 @@ import {
   NextOrObserver,
   ErrorFn,
   Unsubscribe,
-  Auth,
-} from 'firebase/auth';
+  user,
+} from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,28 +20,33 @@ import {
 export class LoginFacade {
   loginWithGoogle(): Promise<void> {
     const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
+    const auth = getAuth();
     return signInWithRedirect(auth, provider);
   }
 
   loginWithGithub(): Promise<void> {
     const provider = new GithubAuthProvider();
-    const auth = getAuth(app);
+    const auth = getAuth();
     return signInWithRedirect(auth, provider);
   }
 
   logout(): Promise<void> {
-    const auth = getAuth(app);
+    const auth = getAuth();
     return signOut(auth);
   }
 
-  authState(cb: NextOrObserver<User | null>, error: ErrorFn): Unsubscribe {
-    const auth = getAuth(app);
+  authStateChangeHandler(cb: NextOrObserver<User | null>, error: ErrorFn): Unsubscribe {
+    const auth = getAuth();
     return onAuthStateChanged(auth, cb, error);
   }
 
-  getUser(): Auth {
-    const auth = getAuth(app);
-    return auth;
+  userState$(): Observable<User | null> {
+    const auth = getAuth();
+    return user(auth);
+  }
+
+  getUser(): User | null {
+    const auth = getAuth();
+    return auth.currentUser;
   }
 }

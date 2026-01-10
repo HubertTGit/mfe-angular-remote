@@ -2,20 +2,22 @@ import { Component, inject, OnDestroy, OnInit, output } from '@angular/core';
 import { LoginUi } from '@ui/login-ui/login-ui';
 import { LoginFacade } from './login.facade';
 import { Unsubscribe, User } from 'firebase/auth';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { firebaseConfig } from '@services/firebase';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
   imports: [LoginUi],
   templateUrl: './login.html',
+  providers: [],
 })
 export class Login implements OnInit, OnDestroy {
   private readonly loginFacade = inject(LoginFacade);
   private unsubscribe!: Unsubscribe;
 
   ngOnInit(): void {
-    //this.loginFacade.logout();
-    console.log(this.loginFacade.getUser());
-    // this.unsubscribe = this.loginFacade.authState(this.loginCB, this.loginErrorCB);
+    this.loginFacade.userState$().subscribe(console.log);
   }
 
   login(ev: 'google' | 'github') {

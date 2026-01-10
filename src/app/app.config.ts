@@ -1,15 +1,15 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideFirebaseApp } from '@angular/fire/app';
+import { provideFirebaseApp, initializeApp, FirebaseApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { routes } from './app.routes';
-import { app } from '@services/firebase';
+import { firebaseConfig } from '@services/firebase';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideAuth(() => getAuth(inject(FirebaseApp))),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    // provideFirebaseApp(() => app),
-    // provideAuth(() => getAuth(app)),
   ],
 };
