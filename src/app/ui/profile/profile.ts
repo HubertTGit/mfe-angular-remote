@@ -1,4 +1,4 @@
-import { Component, input, inject, signal, ElementRef, HostListener } from '@angular/core';
+import { Component, input, inject, signal, ElementRef, HostListener, output } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile.html',
 })
 export class Profile {
-  private loginFacade = inject(AuthService);
   private elementRef = inject(ElementRef);
 
   user = input<User | null>(null);
   isMenuOpen = signal(false);
+  onLogout = output<void>();
 
   toggleMenu() {
     this.isMenuOpen.update((value) => !value);
@@ -24,7 +24,7 @@ export class Profile {
   }
 
   logout() {
-    this.loginFacade.logout();
+    this.onLogout.emit();
     this.closeMenu();
   }
 

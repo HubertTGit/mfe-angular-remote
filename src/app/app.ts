@@ -32,4 +32,8 @@ export class App implements OnInit {
       error: (error) => console.error(error),
     });
   }
+
+  onLogout() {
+    this.loginFacade.logout();
+  }
 }

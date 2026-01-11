@@ -1,6 +1,6 @@
 <header class="p-4 flex justify-between">
   @if (user()) {
-  <app-profile [user]="user()" />
+  <app-profile [user]="user()" (onLogout)="onLogout()" />
   } @else {
   <div></div>
   }
