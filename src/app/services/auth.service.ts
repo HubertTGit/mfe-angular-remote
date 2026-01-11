@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginFacade {
+export class AuthService {
   private readonly auth = inject(Auth);
 
   loginWithGoogle(): Promise<UserCredential> {

@@ -7,7 +7,7 @@
   >
     <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Chat Support</h3>
     <span class="text-xs text-green-500 font-medium flex items-center gap-1">
-      <span class="w-2 h-2 rounded-full bg-green-500"></span> Online
+      <span class="w-2 h-2 rounded-full bg-green-500"></span> Online ({{ online() }})
     </span>
   </div>
 
@@ -16,19 +16,19 @@
     @for (msg of messages(); track msg.id) {
     <div
       class="flex flex-col"
-      [class.items-end]="msg.userid === 'user'"
-      [class.items-start]="msg.userid === 'bot'"
+      [class.items-end]="msg.userid === user()?.uid"
+      [class.items-start]="msg.userid !== user()?.uid"
     >
       <div
         class="max-w-[80%] px-4 py-2 rounded-2xl text-sm shadow-sm"
-        [class.bg-blue-600]="msg.userid === 'user'"
-        [class.text-white]="msg.userid === 'user'"
-        [class.bg-white]="msg.userid === 'bot'"
-        [class.dark:bg-gray-800]="msg.userid === 'bot'"
-        [class.text-gray-800]="msg.userid === 'bot'"
-        [class.dark:text-gray-200]="msg.userid === 'bot'"
-        [class.rounded-br-none]="msg.userid === 'user'"
-        [class.rounded-bl-none]="msg.userid === 'bot'"
+        [class.bg-blue-600]="msg.userid === user()?.uid"
+        [class.text-white]="msg.userid === user()?.uid"
+        [class.bg-white]="msg.userid !== user()?.uid"
+        [class.dark:bg-gray-800]="msg.userid !== user()?.uid"
+        [class.text-gray-800]="msg.userid !== user()?.uid"
+        [class.dark:text-gray-200]="msg.userid !== user()?.uid"
+        [class.rounded-br-none]="msg.userid === user()?.uid"
+        [class.rounded-bl-none]="msg.userid !== user()?.uid"
       >
         {{ msg.message }}
       </div>
@@ -42,20 +42,22 @@
   <!-- Input Area -->
   <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
     <div class="flex items-center gap-2">
-      <input
-        type="text"
-        [(ngModel)]="newMessage"
-        (keydown.enter)="sendMessage()"
-        placeholder="Type a message..."
-        class="flex-1 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 border-none placeholder-gray-400"
-      />
-      <button
-        (click)="sendMessage()"
-        class="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        [disabled]="!newMessage()"
-      >
-        <lucide-angular [name]="sendHorizontal"></lucide-angular>
-      </button>
+      <form (submit)="sendMessage()">
+        <input
+          type="text"
+          [formField]="chatForm.message"
+          (keydown.enter)="sendMessage()"
+          placeholder="Type a message..."
+          class="flex-1 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 border-none placeholder-gray-400"
+        />
+        <button
+          type="submit"
+          class="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="chatForm.message().invalid()"
+        >
+          <lucide-angular [name]="sendHorizontal"></lucide-angular>
+        </button>
+      </form>
     </div>
   </div>
 </div>

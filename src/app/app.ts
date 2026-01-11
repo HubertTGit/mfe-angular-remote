@@ -2,7 +2,7 @@ import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { ThemeSwitch } from '@ui/theme-switch/theme-switch';
 import { Profile } from '@ui/profile/profile';
-import { LoginFacade } from './screens/login/login.facade';
+import { AuthService } from './services/auth.service';
 import { User } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.html',
 })
 export class App implements OnInit {
-  private loginFacade = inject(LoginFacade);
+  private loginFacade = inject(AuthService);
   protected readonly user = signal<User | null>(null);
   private router = inject(Router);
 

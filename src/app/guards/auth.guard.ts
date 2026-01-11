@@ -1,11 +1,11 @@
 import { inject } from '@angular/core';
 import { Router, type CanActivateFn } from '@angular/router';
 import { map, take } from 'rxjs';
-import { LoginFacade } from '../screens/login/login.facade';
+import { AuthService } from '../services/auth.service';
 
 export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
-  const loginFacade = inject(LoginFacade);
+  const loginFacade = inject(AuthService);
 
   return loginFacade.userState$().pipe(
     take(1),
@@ -20,7 +20,7 @@ export const authGuard: CanActivateFn = () => {
 
 export const guestGuard: CanActivateFn = () => {
   const router = inject(Router);
-  const loginFacade = inject(LoginFacade);
+  const loginFacade = inject(AuthService);
 
   return loginFacade.userState$().pipe(
     take(1),

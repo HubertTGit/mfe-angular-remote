@@ -1,6 +1,6 @@
 import { Component, input, inject, signal, ElementRef, HostListener } from '@angular/core';
 import { User } from '@angular/fire/auth';
-import { LoginFacade } from '../../screens/login/login.facade';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profile.html',
 })
 export class Profile {
-  private loginFacade = inject(LoginFacade);
+  private loginFacade = inject(AuthService);
   private elementRef = inject(ElementRef);
 
   user = input<User | null>(null);
