@@ -52,7 +52,5 @@ export class ChatUi {
     this.onChat.emit(this.chatForm().value());
 
     this.chatForm().value().message = '';
-
-    // this.chatModel.set(this.initialChatMessage);
   }
 }
