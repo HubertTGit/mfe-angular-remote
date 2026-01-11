@@ -16,6 +16,7 @@ export class ChatUi {
   user = input<User | null>();
   onChat = output<IChatMessage>();
   messages = input<IChatMessage[] | undefined>([]);
+  title = input<string>('Chat Support');
 
   online = computed(() => {
     const msgs = this.messages() || [];
