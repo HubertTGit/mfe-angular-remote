@@ -35,6 +35,8 @@ export default createConfig({
         exposes: {
           './LoginUi': './src/app/ui/login-ui/login-ui.entry.ts',
           './ThemeSwitch': './src/app/ui/theme-switch/theme-switch.entry.ts',
+          './ChatUi': './src/app/ui/chat-ui/chat-ui.entry.ts',
+          './Profile': './src/app/ui/profile/profile.entry.ts',
         },
         shared: {
           '@angular/core': { singleton: true, strictVersion: true, eager: true },
