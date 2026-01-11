@@ -1,10 +1,11 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, computed, effect, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { LucideAngularModule, SendHorizontal } from 'lucide-angular';
 import { form, FormField, required } from '@angular/forms/signals';
 import { User } from '@angular/fire/auth';
 import { IChatMessage } from './chat.interface';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-chat-ui',
@@ -13,46 +14,44 @@ import { IChatMessage } from './chat.interface';
 })
 export class ChatUi {
   user = input<User | null>();
-  chatOutput = output<IChatMessage>();
-  messages = input<IChatMessage[]>([]);
-  online = signal<number>(1);
+  onChat = output<IChatMessage>();
+  messages = input<IChatMessage[] | undefined>([]);
+
+  online = computed(() => {
+    const msgs = this.messages() || [];
+    return new Set(msgs.map((m) => m.userid)).size;
+  });
+
+  private initialChatMessage: IChatMessage = {
+    message: '',
+    userid: 'user',
+    username: 'User',
+    avatar: 'https://via.placeholder.com/150',
+    created: Timestamp.now(),
+  };
 
   readonly sendHorizontal = SendHorizontal;
 
-  chatModel = signal<IChatMessage>({
-    message: '',
-    userid: this.user()?.uid,
-    username: this.user()?.displayName,
-    avatar: this.user()?.photoURL,
-    timestamp: new Date(),
-  });
+  chatModel = signal<IChatMessage>(this.initialChatMessage);
+
   chatForm = form(this.chatModel, (schema) => {
     required(schema.message);
   });
 
   sendMessage() {
-    this.chatOutput.emit(this.chatModel());
-
-    this.chatModel.set({
-      message: '',
-      userid: this.user()?.uid,
-      username: this.user()?.displayName,
-      avatar: this.user()?.photoURL,
-      timestamp: new Date(),
+    const currentForm = this.chatForm().value();
+    this.chatForm().setControlValue({
+      ...currentForm,
+      created: Timestamp.now(),
+      userid: this.user()?.uid || 'user',
+      username: this.user()?.displayName || 'User',
+      avatar: this.user()?.photoURL || 'https://via.placeholder.com/150',
     });
-    // if (!this.newMessage().trim()) return;
 
-    // this.messages.update((msgs) => [
-    //   ...msgs,
-    //   {
-    //     id: crypto.randomUUID(),
-    //     message: this.newMessage(),
-    //     userid: 'user',
-    //     username: 'User',
-    //     avatar: 'https://via.placeholder.com/150',
-    //     timestamp: new Date(),
-    //   },
-    // ]);
-    // this.newMessage.set('');
+    this.onChat.emit(this.chatForm().value());
+
+    this.chatForm().value().message = '';
+
+    // this.chatModel.set(this.initialChatMessage);
   }
 }

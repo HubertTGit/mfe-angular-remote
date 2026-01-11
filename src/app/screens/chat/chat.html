@@ -1,3 +1,8 @@
 <div class="flex flex-col w-full h-full p-4">
-  <app-chat-ui class="w-full h-full" [user]="user()" />
+  <app-chat-ui
+    class="w-full h-full"
+    [user]="user()"
+    [messages]="messages()"
+    (onChat)="onChatHandler($event)"
+  />
 </div>
