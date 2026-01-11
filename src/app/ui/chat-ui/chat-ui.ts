@@ -1,4 +1,13 @@
-import { Component, computed, effect, input, output, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { LucideAngularModule, SendHorizontal } from 'lucide-angular';
@@ -13,6 +22,24 @@ import { Timestamp } from '@angular/fire/firestore';
   templateUrl: './chat-ui.html',
 })
 export class ChatUi {
+  @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
+
+  constructor() {
+    effect(() => {
+      this.messages();
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 50);
+    });
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.scrollContainer.nativeElement.scrollTop =
+        this.scrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
+
   user = input<User | null>();
   onChat = output<IChatMessage>();
   messages = input<IChatMessage[] | undefined>([]);
