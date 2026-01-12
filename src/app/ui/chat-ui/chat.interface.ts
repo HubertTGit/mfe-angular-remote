@@ -6,5 +6,5 @@ export interface IChatMessage {
   userid: string | undefined;
   username: string | undefined | null;
   avatar: string | undefined | null;
-  created: Timestamp;
+  created?: string;
 }

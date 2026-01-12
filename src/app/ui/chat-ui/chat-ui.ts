@@ -14,7 +14,7 @@ import { LucideAngularModule, SendHorizontal } from 'lucide-angular';
 import { form, FormField, required } from '@angular/forms/signals';
 import { User } from '@angular/fire/auth';
 import { IChatMessage } from './chat.interface';
-import { Timestamp } from '@angular/fire/firestore';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-chat-ui',
@@ -55,7 +55,7 @@ export class ChatUi {
     userid: 'user',
     username: 'User',
     avatar: 'https://via.placeholder.com/150',
-    created: Timestamp.now(),
+    created: Date.now().toString(),
   };
 
   readonly sendHorizontal = SendHorizontal;
@@ -70,7 +70,7 @@ export class ChatUi {
     const currentForm = this.chatForm().value();
     this.chatForm().setControlValue({
       ...currentForm,
-      created: Timestamp.now(),
+      created: Date.now().toString(),
       userid: this.user()?.uid || 'user',
       username: this.user()?.displayName || 'User',
       avatar: this.user()?.photoURL || 'https://via.placeholder.com/150',

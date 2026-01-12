@@ -36,7 +36,7 @@ export default createConfig({
           './LoginUi': './src/app/ui/login-ui/login-ui.entry.ts',
           './ThemeSwitch': './src/app/ui/theme-switch/theme-switch.entry.ts',
           './ChatUi': './src/app/ui/chat-ui/chat-ui.entry.ts',
-          './Profile': './src/app/ui/profile/profile.entry.ts',
+          './ProfileUi': './src/app/ui/profile/profile.entry.ts',
         },
         shared: {
           '@angular/core': { singleton: true, strictVersion: true, eager: true },
@@ -49,6 +49,7 @@ export default createConfig({
           '@angular/fire/auth': { singleton: true, strictVersion: true, eager: true },
           'lucide-angular': { singleton: true, strictVersion: true, eager: true },
           'zone.js': { singleton: true, strictVersion: true, eager: true },
+          firebase: { singleton: true, strictVersion: true, eager: true },
         },
       }),
     ],
