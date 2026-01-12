@@ -16,12 +16,14 @@ import {
   UserCredential,
 } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly auth = inject(Auth);
+  private readonly router = inject(Router);
 
   loginWithGoogle(): Promise<UserCredential> {
     const provider = new GoogleAuthProvider();
@@ -33,8 +35,9 @@ export class AuthService {
     return signInWithPopup(this.auth, provider);
   }
 
-  logout(): Promise<void> {
-    return signOut(this.auth);
+  logout(): void {
+    signOut(this.auth);
+    this.router.navigate(['/']);
   }
 
   authStateChangeHandler(cb: NextOrObserver<User | null>, error: ErrorFn): Unsubscribe {
