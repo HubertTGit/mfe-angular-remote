@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@use 'tailwindcss';
+@import 'tailwindcss';
 
 @layer base {
- 
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
