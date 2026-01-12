@@ -23,6 +23,7 @@ export default createConfig({
         return config;
       },
     },
+
     plugins: [
       pluginSass(),
       pluginModuleFederation({

@@ -15,12 +15,13 @@
         "src/app/services/*"
       ],
       "@styles/*": [
-        "src/styles.scss"
+        "src/*"
       ]
     } 
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/styles.css"
   ],
   "exclude": [
     "src/**/*.spec.ts"
