@@ -14,7 +14,6 @@ import { LucideAngularModule, SendHorizontal } from 'lucide-angular';
 import { form, FormField, required } from '@angular/forms/signals';
 import { User } from '@angular/fire/auth';
 import { IChatMessage } from './chat.interface';
-import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-chat-ui',

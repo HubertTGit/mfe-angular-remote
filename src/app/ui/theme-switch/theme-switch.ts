@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, output, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { LucideAngularModule, Moon, Sun } from 'lucide-angular';
 
 @Component({

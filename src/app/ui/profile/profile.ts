@@ -1,6 +1,5 @@
 import { Component, input, inject, signal, ElementRef, HostListener, output } from '@angular/core';
 import { User } from '@angular/fire/auth';
-import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
