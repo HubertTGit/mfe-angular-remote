@@ -6,7 +6,7 @@ export default createConfig({
   options: {
     browser: './src/main.ts',
     index: './src/index.html',
-    styles: ['./src/styles.scss'],
+    styles: ['./src/styles.css'],
     tsConfig: './tsconfig.app.json',
   },
   rsbuildConfigOverrides: {
