@@ -1,0 +1,40 @@
+@layer {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 84% 8%;
+    --card: 193 84% 80%;
+    --card-header: 193 52% 68%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --input-foreground: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --chat-bubble-primary: 141 46% 54%;
+    --chat-bubble-secondary: 193 52% 68%;
+    --chat-time: 141 40% 33%;
+    --chat-online: 141 40% 33%;
+  }
+
+  .dark {
+    --background: 222 84% 8%;
+    --foreground: 0 0% 100%;
+    --card: 193 84% 8.5%;
+    --card-header: 193 80% 7%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --input-foreground: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chat-bubble-primary: 141 46% 54%;
+    --chat-bubble-secondary: 193 80% 7%;
+    --chat-time: 193 32% 49%;
+    --chat-online: 141 40% 33%;
+  }
+}
