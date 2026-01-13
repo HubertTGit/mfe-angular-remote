@@ -1,59 +1,67 @@
-# AngularApp
+# Angular Micro-Frontend (MFE)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+A modern Angular application architected to serve as both a standalone application and a remote Micro-Frontend (MFE) provider using Module Federation.
 
-## Development server
+## Key Features
 
-To start a local development server, run:
+- **🚀 Rspack & Rsbuild**: Powered by Rspack for lightning-fast builds and HMR, replacing the traditional Webpack setup.
+- **🔄 Mixed Mode**: Runs as a standard Angular Single Page Application (SPA) AND acts as a Remote MFE generator.
+- **🎨 Tailwind CSS**: Styling architecture fully built on Tailwind CSS (v4) with CSS variables for dynamic theming.
+- **🧩 Module Federation**: exposes features as **Web Components** rather than just Angular components, enabling framework-agnostic usage (can be consumed by React, Vue, Svelte, etc.).
+- **📦 Exportable DTS**: Automatically generates TypeScript declaration files (`.d.ts`) for exposed modules to ensure type safety in host applications.
 
-```bash
-ng serve
-```
+## Technologies
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular 21**: Latest Angular framework features.
+- **Module Federation**: Enhanced plugin for robust micro-frontend architecture.
+- **@angular/elements**: Custom Element (Web Component) generation for exposed micro-frontends.
+- **Tailwind CSS 4**: Utility-first CSS framework.
 
-## Code scaffolding
+## Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Prerequisites
 
-```bash
-ng generate component component-name
-```
+- Node.js (Latest LTS recommended)
+- npm or pnpm
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Installation
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Development Server
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Start the application in development mode with HMR:
 
 ```bash
-ng test
+npm run start:rspack
 ```
 
-## Running end-to-end tests
+The application will be available at `http://localhost:4200` (or configured port).
+The Remote Entry file for Module Federation will be served at `http://localhost:4200/remoteEntry.js`.
 
-For end-to-end (e2e) testing, run:
+### Production Build
+
+Build the application for production:
 
 ```bash
-ng e2e
+npm run build:rspack
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Artifacts will be generated in the `dist/` directory.
 
-## Additional Resources
+## Module Federation & Web Components
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This remote application exposes specific features as Web Components. This ensures better isolation and compatibility with different host frameworks.
+
+**Exposed Modules:**
+
+| Key | Path | Description |
+|-----|------|-------------|
+| `./LoginUi` | `./src/app/ui/login-ui/login-ui.entry.ts` | Login Interface Web Component |
+| `./ThemeSwitch` | `./src/app/ui/theme-switch/theme-switch.entry.ts` | Theme Switcher Web Component |
+| `./ChatUi` | `./src/app/ui/chat-ui/chat-ui.entry.ts` | Chat Interface Web Component |
+| `./ProfileUi` | `./src/app/ui/profile/profile.entry.ts` | User Profile Web Component |
+
+Each entry point wraps the Angular component using `@angular/elements` to `createCustomElement` and registers it as a standard Web Component.
