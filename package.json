@@ -9,18 +9,6 @@
     "build:rspack": "rsbuild build",
     "watch": "ng build --watch --configuration development"
   },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
-  },
   "overrides": {
     "typescript": "~5.9.2"
   },

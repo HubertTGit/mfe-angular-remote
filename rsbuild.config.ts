@@ -6,7 +6,7 @@ export default createConfig({
   options: {
     browser: './src/main.ts',
     index: './src/index.html',
-    styles: ['./src/styles.css'],
+    styles: ['./src/styles.css', './src/theme.css'],
     tsConfig: './tsconfig.app.json',
   },
   rsbuildConfigOverrides: {
@@ -21,6 +21,11 @@ export default createConfig({
         config.optimization = config.optimization || {};
         config.optimization.runtimeChunk = false;
         return config;
+      },
+      cssExtract: {
+        pluginOptions: {
+          filename: '[name].css',
+        },
       },
     },
 

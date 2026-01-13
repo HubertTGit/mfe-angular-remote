@@ -1,4 +1,3 @@
-import { Timestamp } from '@angular/fire/firestore';
 
 export interface IChatMessage {
   id?: string;

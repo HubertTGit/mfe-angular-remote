@@ -1,3 +1,4 @@
+import '@styles/styles.css';
 import { provideBrowserGlobalErrorListeners } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
