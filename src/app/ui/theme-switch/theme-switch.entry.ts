@@ -1,4 +1,3 @@
-import 'zone.js';
 
 import { createApplication } from '@angular/platform-browser';
 import { provideBrowserGlobalErrorListeners } from '@angular/core';

@@ -1,4 +1,3 @@
-import 'zone.js';
 import '@styles/styles.css';
 
 import { createApplication } from '@angular/platform-browser';
