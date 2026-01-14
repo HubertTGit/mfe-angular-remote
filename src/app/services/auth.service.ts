@@ -1,9 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import {
-  getAuth,
   GithubAuthProvider,
   GoogleAuthProvider,
-  signInWithRedirect,
   signOut,
   onAuthStateChanged,
   User,
