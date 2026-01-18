@@ -6,12 +6,13 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./screens/login/login').then((m) => m.Login),
     canActivate: [guestGuard],
-    title: 'Login',
+    title: 'Login - Weeee Chat',
+    
   },
   {
     path: 'chat',
     loadComponent: () => import('./screens/chat/chat').then((m) => m.ChatScreen),
     canActivate: [authGuard],
-    title: 'Chat',
+    title: 'Chat - Weeee Chat',
   },
 ];
