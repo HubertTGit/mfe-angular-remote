@@ -52,6 +52,7 @@ export default createConfig({
           '@angular/compiler': { singleton: true, strictVersion: true, eager: true },
           '@angular/fire/app': { singleton: true, strictVersion: true, eager: true },
           '@angular/fire/auth': { singleton: true, strictVersion: true, eager: true },
+          '@angular/service-worker': { singleton: true, strictVersion: true, eager: true },
           'lucide-angular': { singleton: true, strictVersion: true, eager: true },
           firebase: { singleton: true, strictVersion: true, eager: true },
         },
