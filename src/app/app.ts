@@ -19,7 +19,7 @@ export class App implements OnInit {
   constructor() {
     effect(() => {
       if (this.user()) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/chat']);
       } else {
         this.router.navigate(['/']);
       }
