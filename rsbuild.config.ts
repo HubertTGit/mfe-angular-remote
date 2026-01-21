@@ -28,7 +28,6 @@ export default createConfig({
         },
       },
     },
-
     plugins: [
       pluginSass(),
       pluginModuleFederation({

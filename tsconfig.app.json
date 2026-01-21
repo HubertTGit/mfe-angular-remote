@@ -6,16 +6,15 @@
     "outDir": "./out-tsc/app",
     "rootDir": ".",
     "types": [],
-    "baseUrl": "./src",
     "paths": {
       "@ui/*": [
-        "./app/ui/*"
+        "./src/app/ui/*"
       ],
       "@services/*": [
-        "./app/services/*"
+        "./src/app/services/*"
       ],
-      "@styles/*": [
-        "./styles.css"
+      "@styles/*.css": [
+        "./src/*.css"
       ]
     } 
   },
